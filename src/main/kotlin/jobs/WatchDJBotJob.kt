@@ -23,7 +23,6 @@ class WatchDJBotJob: Job  {
             launch {
                 val channelId = getChannelId(context)
                 val channel = MessageChannelBehavior(channelId, DiscordApi.kordApi())
-                val mentionTarget = getMentionTarget(context)
 
                 val messages = channel.messages
                     .filter { message -> Clock.System.now() - message.timestamp < 16.hours }
@@ -34,7 +33,6 @@ class WatchDJBotJob: Job  {
                     return@launch
 
                 channel.createMessage(randomResponseService.getRandomResponse())
-                channel.createMessage("Halo halo, <@$mentionTarget>")
             }
         }
     }
