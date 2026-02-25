@@ -1,6 +1,7 @@
 
 plugins {
     kotlin("jvm") version "2.3.0"
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 group = "org.example"
@@ -33,4 +34,11 @@ tasks.jar {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+tasks.shadowJar {
+    archiveClassifier.set("all")
+    manifest {
+        attributes["Main-Class"] = "MainKt"
+    }
 }
